@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Love!</title>
+    <style>
+        /* Modern Minimalist Styles */
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&display=swap');
+        
+        :root {
+            --primary: #FF6B8B;
+            --secondary: #FFB3C1;
+            --accent: #FFD166;
+            --dark: #333;
+            --light: #f9f9f9;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .page {
+            width: 90%;
+            max-width: 800px;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            margin: 2rem 0;
+        }
+        
+        .page.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .love-message {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            line-height: 1.6;
+            margin: 2rem 0;
+            color: #d23669;
+            animation: fadeIn 2s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--dark);
+            font-weight: 300;
+        }
+        
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 139, 0.4);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 139, 0.6);
+            background: #ff5a7f;
+        }
+        
+        /* Balloon Game Styles */
+        #balloons-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .balloon {
+            width: 80px;
+            height: 100px;
+            border-radius: 50%;
+            cursor: pointer;
+            position: relative;
+            animation: float 4s ease-in-out infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            box-shadow: inset -7px -7px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .balloon:before {
+            content: "";
+            position: absolute;
+            width: 2px;
+            height: 30px;
+            background: rgba(0,0,0,0.2);
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Heart Animation */
+        .heart {
+            position: fixed;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            animation: floatUp 4s ease-in-out forwards;
+            font-size: 2rem;
+            opacity: 0;
+        }
+        
+        @keyframes floatUp {
+            0% { transform: translate(-50%, 100%); opacity: 1; }
+            100% { transform: translate(-50%, -100vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page 1: Birthday Greeting -->
+    <section id="page1" class="page active">
+        <h1>Happy Birthday, My Love! 🎉</h1>
+        <p>I created something special just for you...</p>
+        <button onclick="showPage('page2')">Continue</button>
+    </section>
+    
+    <!-- Page 2: Special Surprise -->
+    <section id="page2" class="page">
+        <h1>For the Most Amazing Woman 💖</h1>
+        <p>Ready for your birthday surprise?</p>
+        <button onclick="showPage('page3')">Yes, please show me!</button>
+    </section>
+    
+    <!-- Page 3: Balloon Popping Game -->
+    <section id="page3" class="page">
+        <h1>Pop the Balloons to Reveal Your Gift! 🎈</h1>
+        <div id="balloons-container">
+            <div class="balloon" style="background-color: #FF6B8B; animation-delay: 0s;" onclick="popBalloon(this)">❤️</div>
+            <div class="balloon" style="background-color: #48ACF0; animation-delay: 0.5s;" onclick="popBalloon(this)">💖</div>
+            <div class="balloon" style="background-color: #9B5DE5; animation-delay: 1s;" onclick="popBalloon(this)">🥰</div>
+            <div class="balloon" style="background-color: #F15BB5; animation-delay: 0.2s;" onclick="popBalloon(this)">😘</div>
+            <div class="balloon" style="background-color: #00BBF9; animation-delay: 0.7s;" onclick="popBalloon(this)">💕</div>
+        </div>
+        <button onclick="showPage('page4')" id="balloons-next-btn" style="display: none;">Reveal Your Gift</button>
+    </section>
+    
+    <!-- Page 4: Heartfelt Message -->
+    <section id="page4" class="page">
+        <h1>Happy Birthday, My Love! 🎉🎂💖</h1>
+        
+        <div class="love-message">
+            From the moment you came into my life, everything became brighter. You are my happiness, my comfort, and the most beautiful soul I know.<br><br>
+
+            No matter what, I promise to always stand by you, love you endlessly, and make you feel as special as you truly are.<br><br>
+
+            Today is your day—so smile, make a wish, and know that I'll always be here to make all your dreams come true. Happy Birthday, my love! I love you so much! ❤️🎈🎊<br><br>
+
+            Forever yours,<br>
+            Aagnik Biswas
+        </div>
+        
+        <button onclick="createHearts()">Show Me More Love!</button>
+    </section>
+
+    <script>
+        // Page navigation
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+        }
+        
+        // Balloon popping game
+        let poppedBalloons = 0;
+        function popBalloon(balloon) {
+            if (balloon.style.transform !== 'scale(0)') {
+                balloon.style.transform = 'scale(0)';
+                balloon.style.opacity = '0';
+                poppedBalloons++;
+                
+                if (poppedBalloons >= 3) {
+                    document.getElementById('balloons-next-btn').style.display = 'inline-block';
+                }
+            }
+        }
+        
+        // Floating hearts animation
+        function createHearts() {
+            const heartEmojis = ['❤️', '💖', '🥰', '😘', '💕', '💓', '💗', '💙', '💚', '💛'];
+            
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 4000);
+                }, i * 100);
+            }
+        }
+    </script>
+</body>
+</html>
